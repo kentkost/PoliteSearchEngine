@@ -1,0 +1,18 @@
+﻿Content based
+
+Ad hoc factors.
+	Anti-porn heruristic, location onpage(header, div, parapgraph?), publication/location data, length),
+	URL name.
+
+Structure based techniques,
+	page-rank - query indeendent
+	HITS - query-dependent.
+	The more links from outisde domains that point to another link, boosts that links content ranking.
+		d(i) = in-degree
+		n= #nodes
+		prestige = p
+		p(i) = d(i) / (n-1)
+		OTher prestige pages that point to prestige pages count for more.
+
+		Simulation of surfing the web. Following links and once in a while make a random jump.
+

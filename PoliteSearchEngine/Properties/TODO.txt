@@ -1,0 +1,46 @@
+﻿Separate Term Divider. So that it can be used when creating a termVector for the searchquery.
+
+Create folders to have a sort of database.
+
+PseudoCode for ContentRanking
+	Foreach term in searchquery. Find term in in PostList. And add the integers to another list.
+	Make that list distinct
+	Now calculate the cosinesimilarity between normalizedvector with searchquery for the page id from the list of distict list.
+	return list of links with cosine score.
+
+	tf-idf for a term in a document is calculated when used.
+		Get the documents that the term is involved in.
+		Then create a score foreach document(tf-idf)
+		When you come across a new document add it to the list else add the score to the document for the new term
+
+	tf=  Term frequency. Already got that in termvector (freq)
+	tf* = Relevance of a term frequency. Also got that (freqScore)
+	df = Is in crawler called completeTermVector.(freq)
+	idf = is in crawler called completeTermVector. (freqScore)
+	wt = tf* * idf*
+	norm-wt = wt / (sqroot(sum of each wt-term powered to two))
+
+
+	FINAL ALGORITHM. STEP BY STEP!
+		1. Foreach term look for the term in the postinglist and get the documents involved.
+			a. Foreach document add it to a document list. If it already it exists don't add it.
+			b. Get the tf*-idf* score for the term in each document and add it to the documents tf*--idf* score
+		2. When all the terms has been scanned and added then you have completed the first step
+
+	New algorihm.
+		1. Foreach term look for the term in the postinglist and get the documents involved.
+			a. Foreach document add it to a document list. If it already exists don't add it.(check)
+
+		2. calculate the wt for the term in each doc. [check]
+
+		3. calculate the document length for each document(this should only have to be done once.
+			docLength = sqroot(wt,i^2 + wt,i+1^2 ... wt,n^2) [check]
+
+		4. calculate norm for term and add it to the score
+		5. Cosine
+
+		6. Sort based on score.
+		7. Display *links* based on score [FUCKING DOOOONE!!!!]
+		 
+		Der er en lille fejl. Den skal tage hele vægten af hele vector længden for dokumenter (og searchquery for den sags skyld).
+			Det betyder også at document length er forkert.

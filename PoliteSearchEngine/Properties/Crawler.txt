@@ -1,0 +1,12 @@
+﻿TODO:
+Low priority:
+timer, that doesn't hit too often and sorts array while waiting
+
+Mediore Priority:
+Decode percent encoded octets of unreserved characters. //Slide 21, lecture 2;
+
+High Priority:
+Need a prioritizer for the links. And/ or maximum depth. 
+	Since the current architecture can sort out the used urls accurately enough
+LinkedList for terms instead? what is the difference performance wise?
+check for 404 on page that is being parsed?

@@ -1,0 +1,18 @@
+﻿WE remove special characters before we remove stopwords. Should remove stopwords first.
+Then special characters then some different other stopwords again.
+
+We use stopwords differently.
+For instance 
+doc 1: Syria is better than Tyrkey
+is equivalent with
+doc 2: Turkey is better than Syria.
+If the stopwords were removed(is, than)
+But we do it differntly. We would have the following termlists
+doc 1 termlist: "syria", "is better", "better", "than turkey", "turkey".
+doc 2 termlist: "turkey", "is better", "better", "than syria", "syria".
+
+We create use the stopwords to create coherence. Now the search term:
+"syria better than turkey" = "syria", "better", "than turkey", "turkey"
+Would give doc1 a better score than doc2. It's genious!
+
+Ingen position af stopwords
