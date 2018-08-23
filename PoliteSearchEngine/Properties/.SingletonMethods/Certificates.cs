@@ -9,7 +9,6 @@ using System.Net.Security;
 
 
 /// <summary>
-/// I am seriouslly About to smack a bitch because of this.
 /// http://stackoverflow.com/questions/4926676/mono-webrequest-fails-with-https
 /// </summary>
 namespace PoliteSearchEngine
