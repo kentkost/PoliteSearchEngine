@@ -1,8 +1,10 @@
 ﻿using System;
-using System.Data.HashFunction;
+using System.Data.HashFunction.xxHash;
+using System.Data.HashFunction.Core;
 using System.Collections.Generic;
 using System.Security;
 using System.Linq;
+using System.Text;
 
 /// <summary>
 /// Thread safe Singleton
@@ -64,37 +66,50 @@ namespace PoliteSearchEngine
         {
             return BitConverter.ToUInt64(value, 0);
         }
-            
 
         public byte[] HashString(String s, int iteration)
         {
-            xxHash h = new xxHash(64);
+            byte[] input = Encoding.ASCII.GetBytes(s);
+            xxHashConfig config = new xxHashConfig() { HashSizeInBits = 64 };
+            var fac = xxHashFactory.Instance.Create(config);
+            byte[] x = fac.ComputeHash(input).Hash;
+            //xxHash h = new xxHash(64);
+            //byte[] x = h.ComputeHash(s);
 
-            byte[] x = h.ComputeHash(s);
             //lav et loop der bliver ved med at hashe den.
             for (int i = 0; i < iteration; i++)
             {
-                x = h.ComputeHash(x);
+                x = fac.ComputeHash(x).Hash;
             }
             return x;
         }
 
         public UInt64 HashStringJaccard(String s, int iteration)
         {
-            xxHash h = new xxHash();
+            byte[] input = Encoding.ASCII.GetBytes(s);
+            xxHashConfig config = new xxHashConfig() { HashSizeInBits = 64 };
+            var fac = xxHashFactory.Instance.Create(config);
+            byte[] x = fac.ComputeHash(input).Hash;
 
-            byte[] x = h.ComputeHash(s);
+            //xxHash h = new xxHash();
+            //byte[] x = fac.ComputeHash(s);
+
             for (int i = 0; i < iteration; i++)
             {
-                x = h.ComputeHash(x);
+                x = fac.ComputeHash(x).Hash;
             }
             return BitConverter.ToUInt64(x, 0);
         }
 
         public UInt64 HashByteArray(byte[] b)
         {
-            xxHash h = new xxHash(64);
-            byte[] x = h.ComputeHash(b);
+            xxHashConfig config = new xxHashConfig() { HashSizeInBits = 64 };
+            var fac = xxHashFactory.Instance.Create(config);
+
+            //xxHash h = new xxHash(64);
+            //byte[] x = h.ComputeHash(b);
+
+            byte[] x = fac.ComputeHash(b).Hash;
 
             return BitConverter.ToUInt64(x, 0);
         }
